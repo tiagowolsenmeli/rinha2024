@@ -23,7 +23,13 @@ public class TransacoesController {
   @PostMapping("/{id}/transacoes")
     public ResponseEntity<TransacaoOutputDTO> transacoes(@RequestBody TransacaoInputDTO transacaoInputDTO, @PathVariable Long id) {
 
-    return ResponseEntity.ok(transacaoUseCase.execute(transacaoInputDTO));
-//    throw new DadosInvalidosException(List.of("erro1", "erro2"));
+    try {
+      Long clientId = id;
+      return ResponseEntity.ok(transacaoUseCase.execute(clientId, transacaoInputDTO));
+    }
+    catch (Exception e){
+        return ResponseEntity.badRequest().build();
+    }
+
   }
 }

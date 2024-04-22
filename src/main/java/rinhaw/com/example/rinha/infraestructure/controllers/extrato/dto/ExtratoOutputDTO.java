@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rinhaw.com.example.rinha.domain.entities.Saldo;
 
 @Data
 @NoArgsConstructor
