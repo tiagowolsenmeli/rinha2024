@@ -3,8 +3,8 @@ package rinhaw.com.example.rinha.application.usecases;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import rinhaw.com.example.rinha.application.services.SaldoService;
 import rinhaw.com.example.rinha.application.services.TransacoesService;
+import rinhaw.com.example.rinha.domain.entities.Cliente;
 import rinhaw.com.example.rinha.infraestructure.controllers.excecoes.DadosInvalidosException;
 import rinhaw.com.example.rinha.infraestructure.controllers.transacoes.dto.TransacaoInputDTO;
 import rinhaw.com.example.rinha.infraestructure.controllers.transacoes.dto.TransacaoOutputDTO;
@@ -14,7 +14,6 @@ import rinhaw.com.example.rinha.infraestructure.controllers.transacoes.dto.Trans
 public class TransacaoUseCase {
 
   private final TransacoesService transacoesService;
-  private final SaldoService saldoService;
 
   public TransacaoOutputDTO execute(long clientId, TransacaoInputDTO transacaoInputDTO) {
 
@@ -29,12 +28,18 @@ public class TransacaoUseCase {
   }
 
   private TransacaoOutputDTO applyTrasactionDebitAndReturnResult(long clientId, TransacaoInputDTO transacaoInputDTO) {
-    saldoService.getSaldo(clientId);
-    return transacoesService.debito(clientId, transacaoInputDTO);
+    long valor = transacaoInputDTO.getValor();
+    Cliente cliente = transacoesService.debito(clientId, valor);
+    return getTransacaoOutputDTO(cliente);
   }
 
   private TransacaoOutputDTO applyTransactionCreditAndReturnResult(long clientId, TransacaoInputDTO transacaoInputDTO) {
     long valor = transacaoInputDTO.getValor();
-    return transacoesService.credito(clientId, valor);
+    Cliente cliente = transacoesService.credito(clientId, valor);
+    return getTransacaoOutputDTO(cliente);
+  }
+
+  private static TransacaoOutputDTO getTransacaoOutputDTO(Cliente cliente) {
+    return new TransacaoOutputDTO(cliente);
   }
 }

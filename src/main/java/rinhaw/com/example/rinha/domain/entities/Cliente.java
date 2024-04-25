@@ -27,4 +27,8 @@ public class Cliente {
   public void deposit(long valor) {
     this.saldo.deposit(valor);
   }
+
+  public void debit(long valor){
+    this.saldo.debit(valor);
+  }
 }

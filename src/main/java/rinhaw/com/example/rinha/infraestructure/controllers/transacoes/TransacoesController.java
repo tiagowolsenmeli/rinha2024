@@ -21,15 +21,12 @@ public class TransacoesController {
   private final  TransacaoUseCase transacaoUseCase;
 
   @PostMapping("/{id}/transacoes")
-    public ResponseEntity<TransacaoOutputDTO> transacoes(@RequestBody TransacaoInputDTO transacaoInputDTO, @PathVariable Long id) {
-
+    public ResponseEntity<TransacaoOutputDTO> transacoes(@RequestBody TransacaoInputDTO transacaoInputDTO, @PathVariable Long clientId) {
     try {
-      Long clientId = id;
       return ResponseEntity.ok(transacaoUseCase.execute(clientId, transacaoInputDTO));
     }
     catch (Exception e){
-        return ResponseEntity.badRequest().build();
+        throw e;
     }
-
   }
 }

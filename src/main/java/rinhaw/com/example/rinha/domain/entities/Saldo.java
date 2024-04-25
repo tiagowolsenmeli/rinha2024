@@ -25,4 +25,20 @@ public class Saldo {
       throw new IllegalArgumentException("Saldo Exception");
     }
   }
+
+  public void debit(Long valorDeDebito) {
+    if (saldoFinal(valorDeDebito) + limite < 0){
+      throw new IllegalArgumentException("Saldo e limite insuficientes");
+    }
+    if (valorDeDebito > 0){
+      saldo -= valorDeDebito;
+    }else {
+      throw new IllegalArgumentException("Valor de debito não pode ser negativo");
+    }
+  }
+
+  private long saldoFinal(Long valorDeDebito) {
+    return saldo - valorDeDebito;
+  }
+
 }
