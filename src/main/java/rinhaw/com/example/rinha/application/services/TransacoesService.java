@@ -14,7 +14,6 @@ public class TransacoesService {
   public Cliente credito(long clientId, long creditValue){
     Cliente cliente = clienteRepository.findById(clientId).orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
     cliente.deposit(creditValue);
-
     return clienteRepository.save(cliente);
   }
 
