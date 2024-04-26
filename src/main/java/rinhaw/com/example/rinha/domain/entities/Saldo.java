@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rinhaw.com.example.rinha.infraestructure.controllers.excecoes.SaldoInconsistenceException;
 
 @Entity
 @Data
@@ -22,18 +23,19 @@ public class Saldo {
     if (valor > 0){
       saldo += valor;
     }else {
-      throw new IllegalArgumentException("Saldo Exception");
+      throw new SaldoInconsistenceException("Saldo Exception");
     }
   }
 
   public void debit(Long valorDeDebito) {
+    if (valorDeDebito <= 0){
+      throw new SaldoInconsistenceException("Valor de debito não pode ser negativo ou zero");
+    }
     if (saldoFinal(valorDeDebito) + limite < 0){
-      throw new IllegalArgumentException("Saldo e limite insuficientes");
+      throw new SaldoInconsistenceException("Saldo e limite insuficientes");
     }
     if (valorDeDebito > 0){
       saldo -= valorDeDebito;
-    }else {
-      throw new IllegalArgumentException("Valor de debito não pode ser negativo");
     }
   }
 
