@@ -21,5 +21,5 @@ public class Transacao {
   private char tipo;
   private LocalDateTime realizadaEm;
   @ManyToOne
-  private Cliente cliente; //TODO Otimizar EqualsHashCode do @Data
+  private Cliente cliente;
 }

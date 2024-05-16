@@ -33,14 +33,14 @@ public class GerenciadorExcecoes {
 
   @ExceptionHandler(InvalidClientException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  public ResponseEntity<Object> invalidClientIdException(SaldoInconsistenceException e) {
+  public ResponseEntity<ErroResposta> invalidClientIdException(InvalidClientException e) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND)
         .body(new ErroResposta(Mensagem.PROBLEMA_DADOS_REQUISICAO, List.of(e.getMessage())));
   }
 
   @ExceptionHandler(NotFoundRinhaException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  public ResponseEntity<Object> notFoundRinhaExcpetion(NotFoundRinhaException e) {
+  public ResponseEntity<ErroResposta> notFoundRinhaExcpetion(NotFoundRinhaException e) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND)
         .body(new ErroResposta(Mensagem.PROBLEMA_DADOS_REQUISICAO, List.of(e.getMessage())));
   }

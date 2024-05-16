@@ -23,7 +23,7 @@ public class TransacaoUseCase {
       case 'd':
         return applyTrasactionDebitAndReturnResult(clientId, transacaoInputDTO);
       default:
-            throw new DadosInvalidosException(List.of("erro1", "erro2"));
+            throw new DadosInvalidosException(List.of("Tipo deve ser 'c' ou 'd)"));
     }
   }
 

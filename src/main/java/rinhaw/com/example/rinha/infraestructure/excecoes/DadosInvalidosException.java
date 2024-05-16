@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class DadosInvalidosException extends RuntimeException {
+public class DadosInvalidosException extends BusinessException {
   private List<String> mensagens;
 
   @Override

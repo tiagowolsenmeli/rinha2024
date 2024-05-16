@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InvalidClientException extends RuntimeException {
+public class InvalidClientException extends BusinessException {
 
   private String mensagem;
   private List<String> detalhes;
