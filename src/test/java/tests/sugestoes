@@ -1,0 +1,4 @@
+//TODO Otimizar EqualsHashCode do @Data -> deixar equals mais rapido no cliente e transacao
+// Otimizar tamanho máximo de 10 transacoes no banco
+// Cliente ter até 10 transações como Lista é válido?
+// TODO validacoes atuais sao suficientes via lombok? E se colocar valor 10.1 o que acontece?
