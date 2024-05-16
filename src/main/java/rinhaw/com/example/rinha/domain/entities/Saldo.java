@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rinhaw.com.example.rinha.infraestructure.controllers.excecoes.SaldoInconsistenceException;
+import rinhaw.com.example.rinha.infraestructure.excecoes.SaldoInconsistenceException;
 
 @Entity
 @Data

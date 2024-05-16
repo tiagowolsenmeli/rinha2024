@@ -1,4 +1,4 @@
-package rinhaw.com.example.rinha.infraestructure.controllers.excecoes;
+package rinhaw.com.example.rinha.infraestructure.excecoes;
 
 
 public abstract class Mensagem {

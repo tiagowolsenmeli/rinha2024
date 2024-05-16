@@ -4,25 +4,23 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import java.util.List;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 public class Cliente {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  long id;
+  Long id;
 
   @OneToOne
   private Saldo saldo;
-  @OneToMany
-  private List<Transacao> transacao;
 
   public void deposit(long valor) {
     this.saldo.deposit(valor);

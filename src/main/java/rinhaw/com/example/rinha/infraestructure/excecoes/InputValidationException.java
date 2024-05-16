@@ -1,4 +1,4 @@
-package rinhaw.com.example.rinha.infraestructure.controllers.excecoes;
+package rinhaw.com.example.rinha.infraestructure.excecoes;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ErroResposta {
+public class InputValidationException extends RuntimeException {
 
   private String mensagem;
   private List<String> detalhes;

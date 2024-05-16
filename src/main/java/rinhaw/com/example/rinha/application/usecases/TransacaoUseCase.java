@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import rinhaw.com.example.rinha.application.services.TransacoesService;
 import rinhaw.com.example.rinha.domain.entities.Cliente;
-import rinhaw.com.example.rinha.infraestructure.controllers.excecoes.DadosInvalidosException;
+import rinhaw.com.example.rinha.infraestructure.excecoes.DadosInvalidosException;
 import rinhaw.com.example.rinha.infraestructure.controllers.transacoes.dto.TransacaoInputDTO;
 import rinhaw.com.example.rinha.infraestructure.controllers.transacoes.dto.TransacaoOutputDTO;
 

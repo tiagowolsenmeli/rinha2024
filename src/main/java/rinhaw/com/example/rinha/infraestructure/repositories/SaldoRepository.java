@@ -1,4 +1,4 @@
-package rinhaw.com.example.rinha.infraestructure.controllers.repositories;
+package rinhaw.com.example.rinha.infraestructure.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

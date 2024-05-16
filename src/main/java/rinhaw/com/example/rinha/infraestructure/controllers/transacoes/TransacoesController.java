@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rinhaw.com.example.rinha.application.usecases.TransacaoUseCase;
+import rinhaw.com.example.rinha.application.validators.InputValidator;
 import rinhaw.com.example.rinha.infraestructure.controllers.transacoes.dto.TransacaoInputDTO;
 import rinhaw.com.example.rinha.infraestructure.controllers.transacoes.dto.TransacaoOutputDTO;
 
@@ -19,13 +20,16 @@ import rinhaw.com.example.rinha.infraestructure.controllers.transacoes.dto.Trans
 public class TransacoesController {
 
   private final  TransacaoUseCase transacaoUseCase;
+  private final InputValidator inputValidator;
 
   @PostMapping("/{clientId}/transacoes")
-    public ResponseEntity<TransacaoOutputDTO> transacoes(@RequestBody @Validated TransacaoInputDTO transacaoInputDTO,
+    public ResponseEntity<TransacaoOutputDTO> transacoesController(@RequestBody @Validated TransacaoInputDTO transacaoInputDTO,
                                                          @PathVariable long clientId) {
-      if (clientId<=0){
-        return ResponseEntity.badRequest().body(new TransacaoOutputDTO());
-      }
+      validInputs(clientId);
       return ResponseEntity.ok(transacaoUseCase.execute(clientId, transacaoInputDTO));
+  }
+
+  private void validInputs(Long clientId) {
+    inputValidator.validInputs(clientId);
   }
 }
