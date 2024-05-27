@@ -2,6 +2,8 @@ package rinhaw.com.example.rinha.infraestructure.controllers.extrato;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +21,8 @@ public class ExtratoController {
   private final ExtratoUseCase extratoUseCase;
   private final InputValidator inputValidator;
 
-  @PostMapping("/{clienteId}/extrato")
-  public ExtratoOutputDTO transacoes(@RequestParam Long clienteId) {
+  @GetMapping("/{clienteId}/extrato")
+  public ExtratoOutputDTO transacoes(@PathVariable Long clienteId) {
 
       validInputs(clienteId);
       return  extratoUseCase.execute(clienteId);

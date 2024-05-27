@@ -9,7 +9,7 @@ import rinhaw.com.example.rinha.domain.entities.Transacao;
 @Data
 public class ExtratoUltimasTransacoesOutputDTO {
 
-  private int valor;
+  private long valor;
   private char tipo;
   private String descricao;
   private LocalDateTime realizadaEm;

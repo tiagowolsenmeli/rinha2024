@@ -1,10 +1,10 @@
-insert into saldo (limite, saldo) values (100000 ,0);
-insert into saldo (limite, saldo) values (80000, 0);
-insert into saldo (limite, saldo) values (1000000, 0);
-insert into saldo (limite, saldo) values (10000000,0 );
-insert into saldo (limite, saldo) values (500000, 0);
-
-select * from saldo;
+INSERT INTO saldo (saldo,limite)
+  VALUES
+    (0,1000*100),
+    (0,100*100),
+    (0,10000*100),
+    (0,100000*100),
+    (0,5000*100);
 
 insert into cliente (saldo_id) values (1);
 insert into cliente (saldo_id) values (2);

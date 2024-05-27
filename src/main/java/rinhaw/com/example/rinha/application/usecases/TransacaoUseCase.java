@@ -28,14 +28,16 @@ public class TransacaoUseCase {
   }
 
   private TransacaoOutputDTO applyTrasactionDebitAndReturnResult(long clientId, TransacaoInputDTO transacaoInputDTO) {
-    long valor = transacaoInputDTO.getValor();
-    Cliente cliente = transacoesService.debito(clientId, valor);
+    final long valor = transacaoInputDTO.getValor();
+    final String descricao = transacaoInputDTO.getDescricao();
+    final Cliente cliente = transacoesService.debito(clientId, valor, descricao);
     return getTransacaoOutputDTO(cliente);
   }
 
   private TransacaoOutputDTO applyTransactionCreditAndReturnResult(long clientId, TransacaoInputDTO transacaoInputDTO) {
-    long valor = transacaoInputDTO.getValor();
-    Cliente cliente = transacoesService.credito(clientId, valor);
+    final long valor = transacaoInputDTO.getValor();
+    final String descricao = transacaoInputDTO.getDescricao();
+    final Cliente cliente = transacoesService.credito(clientId, valor, descricao);
     return getTransacaoOutputDTO(cliente);
   }
 

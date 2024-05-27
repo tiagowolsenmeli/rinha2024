@@ -1,5 +1,6 @@
 package rinhaw.com.example.rinha.application.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -20,15 +21,22 @@ public class TransacoesService {
 
   private final TransacaoRepository transacaoRepository;
 
-  public Cliente credito(long clientId, long creditValue){
+  private final char TYPE_CREDIT = 'c';
+  private final char TYPE_DEBIT = 'd';
+
+  public Cliente credito(final long clientId, final long creditValue, final String descricao ){
     Cliente cliente = clienteRepository.findById(clientId).orElseThrow(() -> new NotFoundRinhaException("Cliente não encontrado"));
     cliente.deposit(creditValue);
+    Transacao transacao = new Transacao(null, creditValue,descricao, TYPE_CREDIT, LocalDateTime.now(), cliente);
+    transacaoRepository.save(transacao);
     return clienteRepository.save(cliente);
   }
 
-  public Cliente debito (long clientId, long valor){
+  public Cliente debito (long clientId, long debitValue, String descricao){
     Cliente cliente = clienteRepository.findById(clientId).orElseThrow(() -> new NotFoundRinhaException("Cliente não encontrado"));
-    cliente.debit(valor);
+    cliente.debit(debitValue);
+    Transacao transacao = new Transacao(null, debitValue,descricao, TYPE_DEBIT, LocalDateTime.now(), cliente);
+    transacaoRepository.save(transacao);
     return clienteRepository.save(cliente);
   }
 
